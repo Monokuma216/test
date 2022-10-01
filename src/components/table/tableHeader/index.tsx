@@ -1,13 +1,18 @@
 import React from 'react';
+import './style.css';
 
-export default function () {
+interface iTableHeader {
+  sorting: (sortingField: string)=>void
+}
+
+export default function ({ sorting }: iTableHeader) {
   return (
-    <thead>
+    <thead className='table__head'>
       <tr>
         <th>Дата</th>
-        <th>Название</th>
-        <th>Количество</th>
-        <th>Расстояние</th>
+        <th onClick={(_) => sorting('name')}>Название</th>
+        <th onClick={(_) => sorting('quantity')}>Количество</th>
+        <th onClick={(_) => sorting('distance')}>Расстояние</th>
       </tr>
     </thead>
   );
