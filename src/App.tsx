@@ -165,15 +165,21 @@ function App() {
     if (page > maxPageQyt) setPage(maxPageQyt - 1);
     setPageQty(maxPageQyt);
   }, [filterData]);
+  useEffect(() => {
+    if (page < 0) setPage(0);
+    if (page > pageQty - 1) setPage(pageQty - 1);
+  }, [page]);
 
   return (
     <div className='App'>
-      <Filter setFilter={setFilter} />
-      <Table
-        sorting={sorting}
-        data={filterData.slice(page * QYT_VIEW_ELEM, page * QYT_VIEW_ELEM + QYT_VIEW_ELEM)}
-      />
-      <Pagination page={page} quantity={pageQty} onClickHandler={setPage} />
+      <div className='wrapper'>
+        <Filter setFilter={setFilter} />
+        <Table
+          sorting={sorting}
+          data={filterData.slice(page * QYT_VIEW_ELEM, page * QYT_VIEW_ELEM + QYT_VIEW_ELEM)}
+        />
+        <Pagination page={page} quantity={pageQty} onClickHandler={setPage} />
+      </div>
     </div>
   );
 }

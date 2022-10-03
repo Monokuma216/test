@@ -2,8 +2,27 @@
   display: flex
   align-items: center
   justify-content: center
-  flex-direction: column
-
   height: 100vh
 
-  background-color: beige
+  //background-color: rgb(15, 17, 26)
+  background: url("assets/background.jpg")
+  background-size: cover
+  z-index: 99
+
+.wrapper
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  padding: 30px
+  z-index: 2
+
+  &:after
+    content: 'asdasd'
+    position: absolute
+    background: black
+    width: 55vw
+    height: 20vw
+    z-index: -1
+    filter: blur(50px) opacity(90%)
+

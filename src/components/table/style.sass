@@ -1,4 +1,52 @@
 .table
-  background-color: white
+  margin-bottom: 20px
+  border-radius: 20px
+  border-collapse: separate
+  color: #ffffff
+
   table
     width: 50vw
+
+  thead
+    text-shadow: 1px 1px 1px silver -1px 1px 1px silver
+    color: #ffffff
+
+  thead th
+    font-weight: bold
+    text-align: left
+    border: none
+    padding: 10px 15px
+    background: #2c2c2c
+    font-size: 14px
+
+
+  tr td:last-child
+    border-right: 2px solid #951515
+
+
+  thead tr th:first-child
+    border-radius: 20px 0 0 0
+
+
+  thead tr th:last-child
+    border-radius: 0 20px 0 0
+
+  tbody td
+    padding: 10px 15px
+    font-size: 14px
+
+
+  tbody tr:nth-child(even)
+    background: #1a1a1a
+
+
+  tbody tr:last-child td
+    border-bottom: 2px solid #951515
+
+
+  tbody tr:last-child td:first-child
+    border-radius: 0 0 0 20px
+
+
+  tbody tr:last-child td:last-child
+    border-radius: 0 0 20px 0

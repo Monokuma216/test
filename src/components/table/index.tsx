@@ -11,7 +11,7 @@ interface iTable {
 export default function (props: iTable) {
   return (
     <div className='table'>
-      <table border={1}>
+      <table>
         <TableHeader sorting={props.sorting} />
         <tbody>
           {!!props.data.length && props.data.map((value) => (

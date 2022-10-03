@@ -44,7 +44,7 @@ export default function (props: iFilter) {
         <option value='>'>Больше</option>
         <option value='<'>Меньше</option>
       </select>
-      <input onChange={onChangeText} />
+      <input onChange={onChangeText} placeholder='Поиск' />
     </div>
   );
 }

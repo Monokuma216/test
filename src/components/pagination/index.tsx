@@ -16,6 +16,7 @@ export default function ({ page, onClickHandler, quantity }: iPagination) {
       {Array.from(Array(quantity).keys())
         .map((value) => (
           <PageNumbers
+            key={value}
             value={value}
             onClickHandler={onClickHandler}
             focused={page === value}
