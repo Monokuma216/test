@@ -27,10 +27,50 @@ function App() {
       quantity: 90,
       distance: 77,
     }, {
-      date: new Date(2022, 11, 28, 18),
+      date: new Date(2022, 11, 30, 18),
       name: 'Автомобиль',
       quantity: 2,
       distance: 34,
+    }, {
+      date: new Date(2022, 11, 1, 18),
+      name: 'Крот',
+      quantity: 1,
+      distance: 56,
+    }, {
+      date: new Date(2022, 11, 12, 18),
+      name: 'Палка',
+      quantity: 23,
+      distance: 2,
+    }, {
+      date: new Date(2022, 11, 31, 18),
+      name: 'Кружка',
+      quantity: 9,
+      distance: 84,
+    }, {
+      date: new Date(2022, 11, 11, 18),
+      name: 'Монитор',
+      quantity: 2,
+      distance: 87,
+    }, {
+      date: new Date(2022, 11, 13, 18),
+      name: 'Кофе',
+      quantity: 2,
+      distance: 34,
+    }, {
+      date: new Date(2022, 11, 21, 18),
+      name: 'Ракета',
+      quantity: 1,
+      distance: 900,
+    }, {
+      date: new Date(2022, 11, 27, 18),
+      name: 'Железо',
+      quantity: 6,
+      distance: 80,
+    }, {
+      date: new Date(2022, 11, 29, 18),
+      name: 'Провод',
+      quantity: 78,
+      distance: 31,
     },
   ];
 
@@ -51,8 +91,6 @@ function App() {
           break;
         }
         case '===': {
-          // eslint-disable-next-line no-debugger
-          debugger;
           setFilterData(testDATA
             .filter((value) => value[filter.field as keyof iTestDataElem].toString()
               .includes(filter.text)));
@@ -96,9 +134,15 @@ function App() {
     }
     return Number(a[sortingField]) - Number(b[sortingField]);
   };
-
+  const [prevSortName, setPrevSortName] = useState('');
   const sorting = (sortingField: string) => {
-    const sortingData = filterData.sort((a, b) => (sortField(a, b, sortingField)));
+    let sortingData: Array<{ date: Date; name: string; quantity: number; distance: number; }>;
+    if (prevSortName === sortingField) {
+      sortingData = filterData.reverse();
+    } else {
+      sortingData = filterData.sort((a, b) => (sortField(a, b, sortingField)));
+      setPrevSortName(sortingField);
+    }
     setFilterData([...sortingData]);
   };
 
