@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Filter, Table } from './components';
+import { Filter, Table, Pagination } from './components';
 
 function App() {
   interface iTestDataElem {
@@ -9,7 +9,6 @@ function App() {
     quantity: number,
     distance: number
   }
-
   const testDATA = [
     {
       date: new Date(2022, 9, 29, 17),
@@ -71,8 +70,20 @@ function App() {
       name: 'Провод',
       quantity: 78,
       distance: 31,
+    }, {
+      date: new Date(2022, 11, 29, 19),
+      name: 'Кирпич',
+      quantity: 100,
+      distance: 2,
+    }, {
+      date: new Date(2022, 11, 18, 18),
+      name: 'Зелень',
+      quantity: 89,
+      distance: 62,
     },
   ];
+
+  const QYT_VIEW_ELEM = 5;
 
   // Фильтрация
   const [filter, setFilter] = useState({
@@ -146,10 +157,23 @@ function App() {
     setFilterData([...sortingData]);
   };
 
+  // Пагинация
+  const [page, setPage] = useState(0);
+  const [pageQty, setPageQty] = useState(0);
+  useEffect(() => {
+    const maxPageQyt = Math.ceil(filterData.length / QYT_VIEW_ELEM);
+    if (page > maxPageQyt) setPage(maxPageQyt - 1);
+    setPageQty(maxPageQyt);
+  }, [filterData]);
+
   return (
     <div className='App'>
       <Filter setFilter={setFilter} />
-      <Table sorting={sorting} data={filterData} />
+      <Table
+        sorting={sorting}
+        data={filterData.slice(page * QYT_VIEW_ELEM, page * QYT_VIEW_ELEM + QYT_VIEW_ELEM)}
+      />
+      <Pagination page={page} quantity={pageQty} onClickHandler={setPage} />
     </div>
   );
 }
